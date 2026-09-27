@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lakshay Sharma — Software Engineer</title>
+<meta name="description" content="Lakshay Sharma — Software Engineer. Backend, full-stack and applied ML.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F1EDE3;
+    --paper-2: #EAE5D8;
+    --dot: #DDD6C4;
+    --ink: #1C1B18;
+    --muted: #86806f;
+    --faint: #a9a291;
+    --line: #DAD3C1;
+    --accent: #B5511F;
+    --accent-2: #94431a;
+    --max-w: 760px;
+    --side-pad: 40px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--side-pad);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin: 0 0 34px;
+  }
+
+  section { position: relative; }
+
+  /* ---------------- ANIMATION CLASSES ---------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* ---------------- HERO ---------------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 0 60px;
+    overflow: hidden;
+  }
+
+  .hero .wrap {
+    text-align: center;
+  }
+
+  .script {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin: 0 0 6px;
+    transform: rotate(-2deg);
+  }
+
+  .script.reveal.active {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    margin: 0 0 26px;
+    max-width: 15ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero .meta-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--faint);
+    margin: 0 0 90px;
+  }
+
+  .scroll-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--faint);
+  }
+
+  .deco {
+    position: absolute;
+    z-index: 1;
+    user-select: none;
+  }
+
+  .deco-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    box-shadow: 0 10px 24px rgba(28,27,24,0.08);
+    padding: 14px 16px;
+  }
+
+  .deco-term.reveal { transform: translateY(30px) rotate(-6deg); }
+  .deco-term.reveal.active { transform: translateY(0) rotate(-6deg); }
+  .deco-term {
+    top: 9%;
+    left: 4%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: var(--ink);
+    width: 210px;
+  }
+
+  .deco-term .p1 { color: var(--muted); }
+  .deco-term .ok { color: var(--accent); }
+
+  .deco-note.reveal { transform: translateY(30px) rotate(4deg); }
+  .deco-note.reveal.active { transform: translateY(0) rotate(4deg); }
+  .deco-note {
+    bottom: 14%;
+    left: 5%;
+    width: 190px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1.55;
+    color: var(--muted);
+    background: #E9E2CE;
+    box-shadow: 0 8px 20px rgba(28,27,24,0.09);
+  }
+
+  .deco-note b { color: var(--ink); font-weight: 600; }
+
+  .deco-grid.reveal { transform: translateY(30px) rotate(5deg); }
+  .deco-grid.reveal.active { transform: translateY(0) rotate(5deg); }
+  .deco-grid {
+    top: 11%;
+    right: 5%;
+    width: 168px;
+  }
+
+  .deco-grid .grid-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .contrib {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 3px;
+  }
+
+  .contrib span {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: var(--paper-2);
+  }
+
+  .deco-tag.reveal { transform: translateY(30px) rotate(-4deg); }
+  .deco-tag.reveal.active { transform: translateY(0) rotate(-4deg); }
+  .deco-tag {
+    bottom: 12%;
+    right: 6%;
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    color: var(--ink);
+    background: #E9E2CE;
+    box-shadow: 0 8px 20px rgba(28,27,24,0.09);
+  }
+
+  @media (max-width: 900px) {
+    .deco { display: none; }
+  }
+
+  /* ---------------- ABOUT ---------------- */
+  #about {
+    padding: 70px 0 100px;
+  }
+
+  #about h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 30px;
+    max-width: 16ch;
+  }
+
+  .about-copy {
+    max-width: 58ch;
+  }
+
+  .about-copy p {
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+
+  .about-copy p:last-child { margin-bottom: 0; }
+
+  .skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    margin-top: 44px;
+    max-width: 62ch;
+  }
+
+  .skill-cloud span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 5px 11px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+
+  .skill-cloud span:nth-child(3n+1) { transform: rotate(-1.5deg); }
+  .skill-cloud span:nth-child(3n+2) { transform: rotate(1deg); }
+  .skill-cloud span:nth-child(3n)   { transform: rotate(-0.5deg); }
+
+  /* ---------------- PROJECTS ---------------- */
+  #work { padding: 20px 0 100px; }
+
+  .project {
+    padding: 34px 0;
+    border-bottom: 1px dashed var(--line);
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 4px;
+  }
+
+  .project:first-of-type { border-top: 1px dashed var(--line); }
+
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--faint);
+    padding-top: 4px;
+  }
+
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+
+  .project-title a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .project-title a .arrow {
+    opacity: 0;
+    transform: translate(-4px, 2px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    font-size: 1.05rem;
+  }
+
+  .project-title a:hover {
+    color: var(--accent);
+  }
+
+  .project-title a:hover .arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .project-desc {
+    color: var(--ink);
+    max-width: 60ch;
+    margin: 0 0 14px;
+  }
+
+  .project-tags {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+
+  .project-tags span::after {
+    content: "·";
+    margin: 0 8px;
+    color: var(--dot);
+  }
+
+  .project-tags span:last-child::after { content: ""; margin: 0; }
+
+  /* ---------------- EDUCATION ---------------- */
+  #education { padding: 0 0 100px; }
+
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px dashed var(--line);
+    padding-top: 24px;
+  }
+
+  .edu-row .degree {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    margin: 0 0 6px;
+  }
+
+  .edu-row .school { color: var(--muted); margin: 0; }
+
+  .edu-row .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  /* ---------------- FOOTER & PROFILE PIC ---------------- */
+  footer {
+    padding: 40px 0 100px;
+    text-align: center;
+  }
+
+  .profile-pic-wrapper {
+    margin-bottom: 24px;
+  }
+
+ .profile-pic {
+    width: 140px;  /* Increased from 100px */
+    height: 140px; /* Increased from 100px */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--paper-2);
+    box-shadow: 0 8px 24px rgba(28,27,24,0.1);
+    filter: grayscale(30%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+  }
+
+  .profile-pic:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  .signature {
+    font-family: 'Caveat', cursive;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--faint);
+    margin: 6px 0 46px;
+  }
+
+  .footer-links {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.92rem;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-links span {
+    color: var(--dot);
+    margin: 0 12px;
+  }
+
+  .footer-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--faint);
+    margin-top: 24px;
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 640px) {
+    :root { --side-pad: 24px; }
+    .hero { padding-top: 90px; }
+    .project { grid-template-columns: 28px 1fr; }
+    .signature { font-size: 2.5rem; }
+    .footer-links span { margin: 0 8px; display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+
+    <div class="deco deco-term deco-card reveal delay-2" aria-hidden="true">
+      <div class="p1">$ git commit -m "ship it"</div>
+      <div class="ok">✓ 1 file changed, 42 insertions</div>
+      <div class="p1">$ npm run build</div>
+      <div class="ok">✓ compiled successfully</div>
+    </div>
+
+    <div class="deco deco-grid deco-card reveal delay-3" aria-hidden="true">
+      <div class="grid-title">contributions</div>
+      <div class="contrib">
+        <span style="background:var(--accent);opacity:.85"></span><span></span><span style="background:var(--accent);opacity:.4"></span><span></span><span style="background:var(--accent);opacity:.6"></span><span></span><span></span><span style="background:var(--accent);opacity:.3"></span><span></span>
+        <span></span><span style="background:var(--accent);opacity:.5"></span><span></span><span style="background:var(--accent);opacity:.9"></span><span></span><span style="background:var(--accent);opacity:.3"></span><span></span><span></span><span style="background:var(--accent);opacity:.6"></span>
+        <span style="background:var(--accent);opacity:.4"></span><span></span><span style="background:var(--accent);opacity:.7"></span><span></span><span></span><span style="background:var(--accent);opacity:.5"></span><span></span><span style="background:var(--accent);opacity:.8"></span><span></span>
+      </div>
+    </div>
+
+    <div class="deco deco-note deco-card reveal delay-4" aria-hidden="true">
+      <b>Ship</b> /ʃɪp/ verb<br>
+      to release something into the world — bugs, edge cases and all.
+    </div>
+
+    <div class="deco deco-tag deco-card reveal delay-3" aria-hidden="true">
+      fuelled by coffee ☕
+    </div>
+
+    <div class="wrap">
+      <p class="script reveal">hey there</p>
+      <h1 class="reveal delay-1">Hi, I'm Lakshay — turning ideas into software that works.</h1>
+      <p class="meta-line reveal delay-2">CS graduate · problem solver · ai/ml</p>
+      <p class="scroll-hint reveal delay-4">↓ scroll</p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">WHOAMI</p>
+      <h2 class="reveal delay-1">Software Engineer | Backend, Full-Stack and AI/ML</h2>
+      <div class="about-copy reveal delay-2">
+        <p>I am a Computer Science graduate working across backend, full-stack development, and AI/ML. I build applications using Node.js, Express, React, MongoDB, and MySQL, with experience in REST APIs and JWT-based authentication.</p>
+        <p>Utilize standard machine learning libraries like Scikit-learn and deep learning frameworks such as PyTorch and TensorFlow to build and deploy modern deep learning solutions.</p>
+        <p>Strong fundamentals in DSA, OOP, and DBMS help me approach problems with a focus on clean, reliable, and efficient systems.</p>
+      </div>
+
+      <div class="skill-cloud reveal delay-3">
+        <span>Python</span><span>JavaScript</span><span>C++</span><span>C</span><span>Node.js</span><span>Express.js</span><span>React</span><span>MongoDB</span><span>MySQL</span><span>REST APIs</span><span>JWT</span><span>PyTorch</span><span>TensorFlow</span><span>Transformers</span><span>Scikit-learn</span><span>DSA</span><span>OOP</span><span>DBMS</span><span>Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow reveal">THINGS I HAVE BUILT</p>
+
+      <div class="project reveal delay-1">
+        <div class="project-num">01.</div>
+        <div>
+          <h3 class="project-title">
+            <a href="https://github.com/striger07/mislable-unlearning" target="_blank" rel="noopener">
+              Efficient Machine Unlearning using Mislabeling
+              <span class="arrow">↗</span>
+            </a>
+          </h3>
+          <p class="project-desc">A machine unlearning framework that removes a targeted data point's influence from a pre-trained BERT model without full retraining, using mislabeling and influence-function analysis over BERT embeddings. It reached a 2.3× speedup over retraining while holding 1.15× relative retain accuracy on SemEval-18.</p>
+          <p class="project-tags"><span>PyTorch</span><span>Transformers</span><span>BERT</span><span>Influence Functions</span></p>
+        </div>
+      </div>
+
+      <div class="project reveal delay-2">
+        <div class="project-num">02.</div>
+        <div>
+          <h3 class="project-title">
+            <a href="https://github.com/striger07/SplitEase" target="_blank" rel="noopener">
+              SplitEase
+              <span class="arrow">↗</span>
+            </a>
+          </h3>
+          <p class="project-desc">A full-stack expense management app for splitting costs across groups — auth, group management, expense tracking and debt settlement, secured with JWT and bcrypt. Group settlements run through the Ford-Fulkerson max-flow algorithm to collapse debts into the fewest possible transactions.</p>
+          <p class="project-tags"><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>JWT</span><span>React</span></p>
+        </div>
+      </div>
+
+      <div class="project reveal delay-3">
+        <div class="project-num">03.</div>
+        <div>
+          <h3 class="project-title">
+            <a href="https://github.com/striger07/URL-shortener" target="_blank" rel="noopener">
+              URL Shortener Service
+              <span class="arrow">↗</span>
+            </a>
+          </h3>
+          <p class="project-desc">A URL shortening service built on Node.js, Express and MongoDB with NanoID, structured around clean MVC boundaries. RESTful endpoints handle creation, redirection, retrieval and analytics, backed by centralized error handling and Mongoose models tuned for fast lookups.</p>
+          <p class="project-tags"><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>NanoID</span><span>MVC</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <p class="eyebrow reveal">EDUCATION</p>
+      <div class="edu-row reveal delay-1">
+        <div>
+          <p class="degree">Bachelor of Technology, Computer Science</p>
+          <p class="school">Jaypee Institute of Information Technology</p>
+        </div>
+        <p class="year">2026</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="reveal">
+  <div class="wrap">
+    
+    <!-- ADD YOUR PHOTO LINK IN THE 'src' ATTRIBUTE BELOW -->
+    <div class="profile-pic-wrapper reveal delay-1">
+      <img src="LAKSHAYNEW.jpeg" alt="Lakshay Sharma" class="profile-pic">
+    </div>
+
+    <p class="signature reveal delay-2">Lakshay Sharma</p>
+    <p class="tagline reveal delay-3">built with node, react &amp; a lot of debugging</p>
+    <p class="footer-links reveal delay-4">
+      <a href="https://github.com/striger07" target="_blank" rel="noopener">GitHub</a>
+      <span>·</span>
+      <a href="https://www.linkedin.com/in/lakshay-sharma-bks8126/" target="_blank" rel="noopener">LinkedIn</a>
+      <span>·</span>
+      <a href="mailto:lak02.sharma@gmail.com">Email</a>
+    </p>
+    <p class="footer-status reveal delay-4">open to software engineering roles</p>
+  </div>
+</footer>
+
+<!-- Intersection Observer Script for scroll animations -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>
